@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>Registration Details</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            padding: 40px;
+        }
+
+        .container {
+            width: 900px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #234c6a;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 20px;
+        }
+
+        th,
+        td {
+            border: 1px solid #ddd;
+            padding: 12px;
+            text-align: left;
+        }
+
+        th {
+            background: #234c6a;
+            color: white;
+        }
+
+        img {
+            width: 120px;
+            height: 120px;
+            object-fit: cover;
+            border-radius: 8px;
+        }
+
+        .gallery {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+        }
+
+        .download {
+            display: inline-block;
+            margin-top: 8px;
+            padding: 7px 12px;
+            background: #234c6a;
+            color: white;
+            text-decoration: none;
+            border-radius: 5px;
+        }
+
+        .back {
+            display: block;
+            margin-top: 25px;
+            text-align: center;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>Registration Details</h1>
+
+
+    <table>
+
+        <tr>
+            <th>Field</th>
+            <th>Details</th>
+        </tr>
+
+
+        <tr>
+            <td>Username</td>
+            <td>
+                <%= data.username %>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Password</td>
+            <td>
+                <%= data.password %>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Email</td>
+            <td>
+                <%= data.email %>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Gender</td>
+            <td>
+                <%= data.gender %>
+            </td>
+        </tr>
+
+
+        <tr>
+            <td>Hobbies</td>
+            <td>
+                <%= Array.isArray(data.hobbies)
+                    ? data.hobbies.join(", ")
+                    : data.hobbies %>
+            </td>
+        </tr>
+
+
+        <tr>
+
+            <td>Profile Picture</td>
+
+            <td>
+
+                <img
+                    src="/uploads/profile/<%= profilePic.filename %>"
+                    alt="Profile Picture"
+                >
+
+                <br>
+
+                <a
+                    class="download"
+                    href="/download/profile/<%= profilePic.filename %>"
+                >
+                    Download Profile Picture
+                </a>
+
+            </td>
+
+        </tr>
+
+
+        <tr>
+
+            <td>Other Pictures</td>
+
+            <td>
+
+                <div class="gallery">
+
+                    <% otherPics.forEach(pic => { %>
+
+                        <div>
+
+                            <img
+                                src="/uploads/others/<%= pic.filename %>"
+                                alt="Other Picture"
+                            >
+
+                            <br>
+
+                            <a
+                                class="download"
+                                href="/download/others/<%= pic.filename %>"
+                            >
+                                Download
+                            </a>
+
+                        </div>
+
+                    <% }) %>
+
+                </div>
+
+            </td>
+
+        </tr>
+
+    </table>
+
+
+    <a class="back" href="/">
+        ← Register Another User
+    </a>
+
+</div>
+
+</body>
+
+</html>

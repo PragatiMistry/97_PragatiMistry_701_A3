@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
+
+    <title>User Registration</title>
+
+    <style>
+
+        body {
+            font-family: Arial, sans-serif;
+            background: #f2f4f7;
+            margin: 0;
+            padding: 40px;
+        }
+
+        .container {
+            width: 600px;
+            margin: auto;
+            background: white;
+            padding: 30px;
+            border-radius: 10px;
+            box-shadow: 0 5px 20px rgba(0,0,0,0.1);
+        }
+
+        h1 {
+            text-align: center;
+            color: #234c6a;
+        }
+
+        label {
+            font-weight: bold;
+            display: block;
+            margin-top: 15px;
+        }
+
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="file"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 6px;
+            box-sizing: border-box;
+        }
+
+        .option {
+            margin-top: 8px;
+        }
+
+        .error {
+            background: #ffe5e5;
+            color: #c62828;
+            padding: 10px;
+            margin-bottom: 15px;
+            border-radius: 5px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 25px;
+            padding: 12px;
+            border: none;
+            background: #234c6a;
+            color: white;
+            font-size: 16px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: #17364c;
+        }
+
+        small {
+            color: #666;
+        }
+
+    </style>
+
+</head>
+
+
+<body>
+
+<div class="container">
+
+    <h1>User Registration</h1>
+
+
+    <!-- DISPLAY ERRORS -->
+
+    <% if (errors && errors.length > 0) { %>
+
+        <% errors.forEach(error => { %>
+
+            <div class="error">
+                <%= error.msg %>
+            </div>
+
+        <% }) %>
+
+    <% } %>
+
+
+    <form
+        action="/register"
+        method="POST"
+        enctype="multipart/form-data"
+    >
+
+
+        <!-- USERNAME -->
+
+        <label>Username</label>
+
+        <input
+            type="text"
+            name="username"
+            value="<%= values.username || '' %>"
+            placeholder="Enter username"
+        >
+
+
+        <!-- PASSWORD -->
+
+        <label>Password</label>
+
+        <input
+            type="password"
+            name="password"
+            placeholder="Enter password"
+        >
+
+
+        <!-- CONFIRM PASSWORD -->
+
+        <label>Confirm Password</label>
+
+        <input
+            type="password"
+            name="confirmPassword"
+            placeholder="Confirm password"
+        >
+
+
+        <!-- EMAIL -->
+
+        <label>Email</label>
+
+        <input
+            type="email"
+            name="email"
+            value="<%= values.email || '' %>"
+            placeholder="Enter email"
+        >
+
+
+        <!-- GENDER -->
+
+        <label>Gender</label>
+
+        <div class="option">
+
+            <input
+                type="radio"
+                name="gender"
+                value="Male"
+                <%= values.gender === "Male" ? "checked" : "" %>
+            >
+
+            Male
+
+        </div>
+
+
+        <div class="option">
+
+            <input
+                type="radio"
+                name="gender"
+                value="Female"
+                <%= values.gender === "Female" ? "checked" : "" %>
+            >
+
+            Female
+
+        </div>
+
+
+        <div class="option">
+
+            <input
+                type="radio"
+                name="gender"
+                value="Other"
+                <%= values.gender === "Other" ? "checked" : "" %>
+            >
+
+            Other
+
+        </div>
+
+
+        <!-- HOBBIES -->
+
+        <label>Hobbies</label>
+
+        <div class="option">
+
+            <input
+                type="checkbox"
+                name="hobbies"
+                value="Reading"
+                <%= values.hobbies && values.hobbies.includes("Reading") ? "checked" : "" %>
+            >
+
+            Reading
+
+        </div>
+
+
+        <div class="option">
+
+            <input
+                type="checkbox"
+                name="hobbies"
+                value="Music"
+                <%= values.hobbies && values.hobbies.includes("Music") ? "checked" : "" %>
+            >
+
+            Music
+
+        </div>
+
+
+        <div class="option">
+
+            <input
+                type="checkbox"
+                name="hobbies"
+                value="Sports"
+                <%= values.hobbies && values.hobbies.includes("Sports") ? "checked" : "" %>
+            >
+
+            Sports
+
+        </div>
+
+
+        <div class="option">
+
+            <input
+                type="checkbox"
+                name="hobbies"
+                value="Travel"
+                <%= values.hobbies && values.hobbies.includes("Travel") ? "checked" : "" %>
+            >
+
+            Travel
+
+        </div>
+
+
+        <!-- PROFILE PICTURE -->
+
+        <label>
+            Profile Picture
+        </label>
+
+        <input
+            type="file"
+            name="profilePic"
+            accept="image/*"
+        >
+
+        <small>
+            Single image only. Maximum size: 2MB.
+        </small>
+
+
+        <!-- OTHER PICTURES -->
+
+        <label>
+            Other Pictures
+        </label>
+
+        <input
+            type="file"
+            name="otherPics"
+            accept="image/*"
+            multiple
+        >
+
+        <small>
+            You can upload up to 5 images. Maximum size: 2MB each.
+        </small>
+
+
+        <button type="submit">
+            Register
+        </button>
+
+    </form>
+
+</div>
+
+</body>
+
+</html>
